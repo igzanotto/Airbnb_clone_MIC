@@ -47,9 +47,9 @@ class ReservationsController < ApplicationController
     @flat = Flat.find(params[:flat_id])
   end
 
-  def set_user
-    @user = current_user
-  end
+  # def set_user
+  #   @user = current_user
+  # end
 
   def set_reservation
     @reservation = Reservation.find(params[:id])
