@@ -17,6 +17,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @reservation.user_id = @user
     @reservation.flat_id = @flat
+
     if @reservation.save
       redirect_to flat_path(@reservation.flat)
     else
@@ -28,8 +29,11 @@ class ReservationsController < ApplicationController
 
   def update
     @reservation = Reservation.find(params[:id])
-    @reservation.update(reservations_params) if params[:reservation]
-    redirect_to reservation_path
+    if @reservation.save
+      redirect_to reservation_path(@reservation)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -54,4 +58,8 @@ class ReservationsController < ApplicationController
   def set_reservation
     @reservation = Reservation.find(params[:id])
   end
+
+  # def total_price
+  #   ((@reservation.check_out - @reservation.check_in).to_i) * @flat.price
+  # end
 end
