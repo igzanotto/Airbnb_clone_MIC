@@ -19,6 +19,7 @@
     <% @flats.each do |flat| %>
       <div class="col-md-4">
         <div class="flat-card">
+          <div class="flat-card-image" style="background-image: url('<%= cl_image_path flat.photo.key, height: 300, width: 400, crop: :fill %>')"></div>
           <div class="flat-card-content">
             <div class="flat-card-title">
               <h4><%= flat.title %></h4>
