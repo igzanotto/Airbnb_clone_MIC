@@ -7,5 +7,4 @@ Rails.application.routes.draw do
   resources :flats do
     resources :reservations
   end
-
 end
