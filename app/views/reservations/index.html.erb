@@ -1,2 +1,11 @@
-<h1>Reservations#index</h1>
-<p>Find me in app/views/reservations/index.html.erb</p>
+<div class="text-center">
+  <h2>All my stays</h2>
+</div>
+<div class="text-center">
+  <h4>MY FUTURE RESERVATION</h4>
+</div>
+
+
+<% reservations.each do |reservation| %>
+<p><%= Flat.find(reservation.flat_id) %></p>
+<% end %>
