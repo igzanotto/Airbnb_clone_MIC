@@ -11,6 +11,7 @@
         <p>You searched for <strong><%= @query %></strong>. We found <%= @flats.count %> flats out of our <%= Flat.count %> on our website.</p>
       <% else %>
         <p>All <%= Flat.count %> flats.</p>
+        <%= link_to "Add a new flat", new_flat_path %>
       <% end %>
     </div>
   </div>
