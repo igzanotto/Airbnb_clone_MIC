@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-  # before_filter :authenticate_user!
+  before_action :set_user
   before_action :set_reservation, only: %i[show edit update destroy]
   before_action :set_flat, only: %i[new create]
 
@@ -15,9 +15,10 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
-    @reservation.flat = @flat
+    @reservation.user_id = @user
+    @reservation.flat_id = @flat
     if @reservation.save
-      redirect_to flat_path(@reservation.flat)#, flash[:notice] = "Reservation created!"
+      redirect_to flat_path(@reservation.flat)
     else
       render :new
     end
@@ -43,7 +44,11 @@ class ReservationsController < ApplicationController
   end
 
   def set_flat
-    @flat = Flat.find(params[:id])
+    @flat = Flat.find(params[:flat_id])
+  end
+
+  def set_user
+    @user = current_user
   end
 
   def set_reservation

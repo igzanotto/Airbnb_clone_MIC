@@ -1,11 +1,28 @@
-<div class="text-center">
-  <h2>All my stays</h2>
+<h1 class="text-center">Your reservations</h1>
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <% @reservations.each do |reservation| %>
+        <% flat = Flat.find(reservation.flat_id) %>
+        <div class="col-md-4">
+          <div class="card mb-2">
+            <div class="card-block p-3">
+              <p class="card-title">Title: <%= flat.title %></p>
+              <p class="card-subtitle text-muted"><span class="font-weight-bold">Total Price:</span> <%= reservation.flat.price %> €</p>
+              <small class="card-text p-y-1"><span class="font-weight-bold">Description:</span> <%= flat.description %> people</small><br>
+              
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="container">
+        <% if Flat.create %>
+          <%= link_to "Back to All Flats!", flats_path, class:"btn btn-primary" %>
+        <% end %>
+        <%= link_to 'All your flats', flats_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="text-center">
-  <h4>MY FUTURE RESERVATION</h4>
-</div>
-
-
-<% reservations.each do |reservation| %>
-<p><%= Flat.find(reservation.flat_id) %></p>
-<% end %>
