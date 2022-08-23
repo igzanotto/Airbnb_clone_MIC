@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   resources :flats do
-    resources :reservations, only: [:new, :create]
+    resources :reservations, only: %i[new create]
   end
-  resources :reservations, only: [:index, :destroy, :update, :edit, :show]
+  resources :reservations, only: %i[index new show edit update destroy]
+
 end
