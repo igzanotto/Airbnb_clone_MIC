@@ -6,4 +6,5 @@ class Flat < ApplicationRecord
   validates :description, length: { minimum: 20, maximum: 400 }
   validates :location, presence: true
   has_one_attached :photo
+  geocoded_by :location
 end

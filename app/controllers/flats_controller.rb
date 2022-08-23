@@ -14,11 +14,12 @@ class FlatsController < ApplicationController
     else
       @flats = Flat.all
     end
-    # if params[:query].present?
-    #   @flats = Flat.where(title: params[:query])
-    # else
-    #   @flats = Flat.all
-    # end
+    @markers = @flats.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
   end
 
   def new
