@@ -1,0 +1,31 @@
+<% flat = Flat.find(@reservation.flat_id) %>
+<div class="container">
+  <div class="row d-flex align-items-center">
+    <div class="col-8">
+      <h3>Your Stay in <%= flat.location %> </h3>
+    </div>
+    <div class="col-4 d-flex justify-content-end">
+      <%= link_to 'Back your reservations', reservations_path, class: "btn btn-primary btn-sm" %>
+    </div>
+  </div>
+  <div class="row reservation_container">
+    <div class="info show_reservation col-4">
+      <p style="font-size: 16px;"><span class="font-weight-bold">Title: </span><%= flat.title  %></p>
+      <p style="font-size: 16px;"><span class="font-weight-bold">Description: </span><%= flat.description  %></p>
+      <p style="font-size: 16px;"><span class="font-weight-bold">From: </span><%= @reservation.check_in %></p>
+      <p style="font-size: 16px;"><span class="font-weight-bold">To: </span><%= @reservation.check_out %></p>
+      <p style="font-size: 16px;"><span class="font-weight-bold">Guests: </span><%= flat.number_of_guests  %></p>
+      <p style="font-size: 16px;"><span class="font-weight-bold">Location: </span><%= flat.location  %></p>
+      <p style="font-size: 16px;"><span class="font-weight-bold">Price: </span><%= flat.price  %> €.</p>
+    </div>
+  </div>
+  <div class="reservation-options">
+    <%= link_to "Delete this reservation", reservation_path(@reservation), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary mx-2" %>
+      <% if @reservation.edit %>
+      <%= link_to 'Edit this reservation', edit_reservation_path(@reservation), class: "btn btn-primary mx-2" %>
+    <% end %>
+    <% if @reservation.destroy %>
+      <%= link_to 'Back to your reservations', reservations_path, class: "btn btn-primary mx-2" %>
+    <% end %>
+  </div>
+</div>
