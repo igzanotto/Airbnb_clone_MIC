@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col mb-2">
     <%= form_with url: flats_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Find a flat" %>
+      <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Find by title or category" %>
       <%= submit_tag "Search", class: "btn btn-primary" %>
     <% end %>
       <div class="col mt-2"><%= link_to "Add a new flat", new_flat_path, class: "btn btn-secondary" %></div>
@@ -29,7 +29,7 @@
             <p><%= flat.description %></p>
             <div class="flex">
               <div class="flex align-items-center">
-                <i class="fa-solid fa-people-line"></i>
+                <i class="fa-solid fa-users"></i>
                 <span><%= flat.number_of_guests %></span>
               </div>
               <div class="flex align-items-center ms-3">
@@ -39,15 +39,28 @@
             </div>
           </div>
           <div class="flat-card-actions">
-            <%= link_to "More info", flat_path(flat) %>
-            <%= link_to "Edit", edit_flat_path(flat), class: "ms-3 text-warning" %>
+            <%= link_to "More info", flat_path(flat), class: "btn btn-outline-success" %>
+            <%= link_to "Edit", edit_flat_path(flat), class: "btn btn-outline-secondary" %>
             <%= link_to "Remove", flat_path(flat),
                 data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                class: "ms-3 text-danger"
+                class: "btn btn-outline-danger"
             %>
           </div>
         </div>
       </div>
     <% end %>
   </div>
+  <nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+  </nav>
 </div>

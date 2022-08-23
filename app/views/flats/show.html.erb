@@ -8,8 +8,8 @@
       </div>
       <div class="flat-show-card">
         <h3>A bit more about this flat...</h3>
-        <p><%= @flat.category %></p>
-        <p><%= @flat.description %></p>
+        <p>Category:  <%= @flat.category %></p>
+        <p>Description:  <%= @flat.description %></p>
       </div>
     </div>
 
@@ -33,10 +33,10 @@
         <h3>Details</h3>
         <div class="flex">
           <div class="flex">
-            <%= @flat.number_of_guests %> people
+            <%= @flat.number_of_guests %> guests
           </div>
           <div class="flex ms-3">
-            <%= @flat.price %>€
+            <%= @flat.price %> € per night
           </div>
         </div>
       </div>
