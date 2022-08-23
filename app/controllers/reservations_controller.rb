@@ -43,7 +43,7 @@ class ReservationsController < ApplicationController
   end
 
   def set_flat
-    @flat = Flat.find(params[:id])
+    @flat = Flat.find(params[:flat_id])
   end
 
   def set_reservation
