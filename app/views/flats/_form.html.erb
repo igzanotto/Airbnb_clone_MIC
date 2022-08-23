@@ -1,10 +1,10 @@
 <%= simple_form_for(flat) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :category %>
-  <%= f.input :price %>
-  <%= f.input :description %>
-  <%= f.input :location %>
-  <%= f.input :number_of_guests %>
+  <%= f.input :title, placeholder: "Choose a title"  %>
+  <%= f.input :category, placeholder: "House, Apartment, Island, Cabin, Yatch" %>
+  <%= f.input :price, placeholder: "Choose a price per night" %>
+  <%= f.input :description, placeholder: "What better describes your unique flat?" %>
+  <%= f.input :location, placeholder: "Put an exact location" %>
+  <%= f.input :number_of_guests, placeholder: "Max number of guests" %>
   <%= f.input :photo, as: :file %>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>
