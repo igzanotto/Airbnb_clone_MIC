@@ -14,12 +14,6 @@ class FlatsController < ApplicationController
     else
       @flats = Flat.all
     end
-    @markers = @flats.geocoded.map do |flat|
-      {
-        lat: flat.latitude,
-        lng: flat.longitude
-      }
-    end
   end
 
   def new
@@ -36,6 +30,12 @@ class FlatsController < ApplicationController
   end
 
   def show
+    @flat = Flat.find(params[:id])
+    @markers = [{
+        lat: @flat.geocode[0],
+        lng: @flat.geocode[1],
+        info_window: render_to_string(partial: "info_window", locals: {flat: @flat})
+      }]
   end
 
   def edit
