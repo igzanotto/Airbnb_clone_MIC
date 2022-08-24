@@ -17,7 +17,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @reservation.user = @user
     @reservation.flat = @flat
-    # @reservation.total_price = ((@reservation.check_out - @reservation.check_in).to_i) * @flat.price
+    @reservation.total_price = ((@reservation.check_out - @reservation.check_in).to_i) * @flat.price
     if @reservation.save
       redirect_to reservations_path(@flat)
     else
@@ -28,12 +28,11 @@ class ReservationsController < ApplicationController
   def edit; end
 
   def update
-    new_id = @reservation.flat_id
-    @flat = Flat.find(new_id)
     @reservation.update(reservation_params)
-    @reservation.total_price = ((@reservation.last_day_of_reservation - @reservation.first_day_of_reservation).to_i) * @flat.price
+    @flat = @reservation.flat
+    @reservation.total_price = ((@reservation.check_out - @reservation.check_in).to_i) * @flat.price
     if @reservation.save
-      redirect_to reservation_path(@flat, @reservation)
+      redirect_to reservation_path(@reservation)
     else
       render :edit
     end
@@ -41,7 +40,7 @@ class ReservationsController < ApplicationController
 
   def destroy
     @reservation.destroy
-    redirect_to flat_path(@reservation.flat), status: :see_other
+    redirect_to reservations_path, status: :see_other
   end
 
   private

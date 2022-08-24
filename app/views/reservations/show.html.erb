@@ -1,5 +1,5 @@
 <div>
-  
+
   <% flat = Flat.find(@reservation.flat_id) %>
   <% if flat.photo.key.present? %>
     <%= cl_image_tag flat.photo.key, crop: :fill, class:"flat_pic card-img-top", style:"height: 600px" %>
@@ -27,14 +27,14 @@
         <h3>Detail reservation</h3>
         <div class="mb-2 flex">Check In: <%= @reservation.check_in %></div>
         <div class="mb-2 flex">Check Out: <%= @reservation.check_out %></div>
-        <div class="mb-2 flex">Number guests: <%= flat.number_of_guests %></div>
-        <div class="mb-2 flex mb-2">Total: <%= ((@reservation.check_out - @reservation.check_in).to_i) * flat.price %> €</div>
+        <div class="mb-2 flex">Number guests: <%= @reservation.number_of_guests %></div>
+        <div class="mb-2 flex mb-2">Total: <%= @reservation.total_price %> €</div>
         <div class="flat-card-actions ">
           <div class="mb-2 ">
-            <%= link_to "Edit", edit_reservation_path(flat), style:"width: 100%", class: "btn btn-outline-secondary" %>
+            <%= link_to "Edit", edit_reservation_path(@reservation), style:"width: 100%", class: "btn btn-outline-secondary" %>
           </div>
           <div class="mb-2 ">
-            <%= link_to "Remove", reservation_path(flat), style:"width: 100%", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+            <%= link_to "Cancel", reservation_path(@reservation), style:"width: 100%", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
           </div>
         </div>
       </div>
