@@ -14,11 +14,6 @@ class FlatsController < ApplicationController
     else
       @flats = Flat.all
     end
-    # if params[:query].present?
-    #   @flats = Flat.where(title: params[:query])
-    # else
-    #   @flats = Flat.all
-    # end
   end
 
   def new
@@ -37,6 +32,12 @@ class FlatsController < ApplicationController
 
 
   def show
+    @flat = Flat.find(params[:id])
+    @markers = [{
+        lat: @flat.geocode[0],
+        lng: @flat.geocode[1],
+        info_window: render_to_string(partial: "info_window", locals: {flat: @flat})
+      }]
   end
 
   def edit
@@ -62,6 +63,6 @@ class FlatsController < ApplicationController
   end
 
   def flat_params
-    params.require(:flat).permit(:title, :price, :category, :number_of_guests, :location, :description, :photo)
+    params.require(:flat).permit(:title, :price, :category, :number_of_guests, :location, :description, :photo, :user_id)
   end
 end

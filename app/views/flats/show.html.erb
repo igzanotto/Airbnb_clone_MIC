@@ -26,7 +26,7 @@
             <span class="input-group-text" id="end-date-label">To:</span>
             <input type="text" class="form-control" placeholder="18/10/2017" aria-label="end-date" aria-describedby="start-date-label">
           </div>
-          <input type="submit" value="Book" class="btn btn-success mt-2" style="width: 100%">
+          <input type="submit" value="Book" class="btn btn-success mt-2" style="width: 100%"<%= link_to "Book", new_flat_reservation_path(@flat) %>>
         </form>
       </div>
       <div class="flat-show-card">
@@ -53,4 +53,8 @@
       </div>
     </div>
   </div>
+  <div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 </div>
