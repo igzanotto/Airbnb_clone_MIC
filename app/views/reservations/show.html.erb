@@ -1,29 +1,42 @@
-<% flat = Flat.find(@reservation.flat_id) %>
-<div class="container">
-  <div class="row d-flex align-items-center">
-    <div class="col-8">
-      <h3>Your Stay in <%= flat.location %> </h3>
+<div>
+  <% flat = Flat.find(@reservation.flat_id) %>
+  <% if flat.photo.key.present? %>
+    <%= cl_image_tag flat.photo.key, crop: :fill, class:"flat_pic card-img-top", style:"height: 600px" %>
+  <% else %>
+    <%= image_tag("unknown.jpg", class:"flat_pic card-img-top", style:"height: 50%" ) %>
+  <% end %>
+</div>
+</div>
+<div class="container margin-top-negative">
+  <div class="row">
+    <div class="col-7">
+      <div class="flat-show-card">
+        <h1><%= flat.title %></h1>
+        <p class="flat-show-address"><%= flat.location %></p>
+      </div>
+      <div class="flat-show-card">
+        <h3>About this flat...</h3>
+        <p><strong>Category:</strong>  <%= flat.category %></p>
+        <p><strong>Description:</strong>  <%= flat.description %></p>
+      </div>
     </div>
-    <div class="col-4 d-flex justify-content-end">
-      <%= link_to 'Back to your reservations', reservations_path, class: "btn btn-primary btn-sm" %>
+
+    <div class="col-5">
+      <div class="flat-show-card">
+        <h3>Detail reservation</h3>
+        <div class="mb-2 flex">Check In: <%= @reservation.check_in %></div>
+        <div class="mb-2 flex">Check Out: <%= @reservation.check_out %></div>
+        <div class="mb-2 flex">Number guests: <%= flat.number_of_guests %></div>
+        <div class="mb-2 flex mb-2">Total: <%= ((@reservation.check_out - @reservation.check_in).to_i) * flat.price %> €</div>
+        <div class="flat-card-actions ">
+          <div class="mb-2 ">
+            <%= link_to "Edit", edit_reservation_path(flat), style:"width: 100%", class: "btn btn-outline-secondary" %>
+          </div>
+          <div class="mb-2 ">
+            <%= link_to "Remove", reservation_path(flat), style:"width: 100%", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row reservation_container">
-    <div class="col-6">
-      <% if flat.photo.key.present? %>
-        <%= cl_image_tag flat.photo.key, crop: :fill, class:"flat_pic reservation_flat_pic" %>
-      <% else %>
-        <%= image_tag("unknown.jpg", class:"flat_pic reservation_flat_pic") %>
-      <% end %>
-    </div>
-    <div class="info show_reservation col-4">
-      <p style="font-size: 16px;"><span class="font-weight-bold">Title: </span><%= flat.title  %></p>
-      <p style="font-size: 16px;"><span class="font-weight-bold">Description: </span><%= flat.description  %></p>
-      <p style="font-size: 16px;"><span class="font-weight-bold">From: </span><%= @reservation.check_in %></p>
-      <p style="font-size: 16px;"><span class="font-weight-bold">To: </span><%= @reservation.check_out %></p>
-      <p style="font-size: 16px;"><span class="font-weight-bold">Guests: </span><%= flat.number_of_guests  %></p>
-      <p style="font-size: 16px;"><span class="font-weight-bold">Location: </span><%= flat.location  %></p>
-      <p style="font-size: 16px;"><span class="font-weight-bold">Price: </span><%= flat.price  %> Euros.</p>
-    </div>
-  </div>
-  
+</div>
