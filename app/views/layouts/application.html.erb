@@ -14,9 +14,9 @@
 
   <body>
     <%= render '/devise/shared/navbar' %>
-    <%# <%= render '/devise/shared/error_messages' %> 
+    <%# <%= render '/devise/shared/error_messages' %>
     <%= yield %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <p class="alert-success"><%= notice %></p>
+    <p class="alert-danger" role="alert"><%= alert %></p>
   </body>
 </html>
