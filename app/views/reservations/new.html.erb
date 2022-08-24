@@ -1,13 +1,14 @@
-<h1>New reservation</h1>
-<div class="container">
-  <%= simple_form_for [ @flat, @reservation ] do |f| %>
-    <%= f.input :check_in, label: 'Check-in' %>
-    <%= f.input :check_out, label: 'Check-out'  %>
-    <%= f.input :number_of_guests, label: 'Number of guests'  %>
-    <div class="text-center">
-      <%= f.submit "Add reservation!", class: "btn btn-primary w-50" %><br>
-      <%= link_to "Back to All Flats", flats_path, class: "btn btn-primary"  %>
-      <%= link_to "Back to your reservation", reservations_path(@reservation), class: "btn btn-primary"  %>
-    </div>
-  <% end %>
+<div class="container w-50">
+  <div class="row justify-content-md-center">
+    <h1>New reservation</h1>
+    <%= simple_form_for [ @flat, @reservation ] do |f| %>
+      <%= f.input :check_in, as: :date, html5: true, label: 'Check-in' %>
+      <%= f.input :check_out, as: :date, html5: true, label: 'Check-out'  %>
+      <%= f.input :number_of_guests, label: 'Number of guests'  %>
+      <div class="text-center">
+        <%= f.submit "Reserve", class: "btn btn-success" %>
+        <%= link_to "Back to All Flats", flats_path, class: "btn btn-primary"  %>
+      </div>
+    <% end %>
+  </div>
 </div>

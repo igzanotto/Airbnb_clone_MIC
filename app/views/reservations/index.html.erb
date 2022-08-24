@@ -1,36 +1,51 @@
-<h1 class="text-center">Your reservations</h1>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-12">
+      <h1>My reservations</h1>
+    </div>
+  </div>
+
 <div class="py-5">
   <div class="container">
-    <div class="row hidden-md-up">
-      <% @reservations.each do |reservation| %>
-        <% flat = Flat.find(reservation.flat_id) %>
-        <div class="col-md-4">
-          <div class="card mb-2">
-            <div class="card-block p-3">
-              <% if flat.photo.key.present? %>
-                <%= cl_image_tag reservation.flat.photo.key, crop: :fill, class:"flat_pic card-img-top" %>
-              <% else %>
-                <%= image_tag("unknown.jpg", class:"flat_pic card-img-top") %>
-              <% end %>
-              <p class="card-title"><span class="font-weight-bold">Title:</span> <%= flat.title %></p>
-              <small class="card-text p-y-1"><span class="font-weight-bold">Description:</span> <%= flat.description %> people</small><br>
-              <p class="card-subtitle text-muted"><span class="font-weight-bold">Price:</span> <%= flat.price %> €</p>
-              <%= link_to 'Create', flat_reservations_path(reservation), class: "btn btn-primary" %> <br>
-              <%= link_to 'Edit', edit_reservation_path(reservation), class: "btn btn-primary" %> <br>
-              <%= link_to 'Delete', reservation, method: :delete, data: {confirm: "sure?"}, class: "btn btn-primary" %>
-
+    <div class="row">
+    <% @reservations.each do |reservation| %>
+      <% flat = Flat.find(reservation.flat_id) %>
+      <div class="col-md-4">
+        <div class="flat-card">
+        <div>
+          <% if flat.photo.key.present? %>
+            <%= cl_image_tag reservation.flat.photo.key, crop: :fill, class:"flat_pic card-img-top" %>
+          <% else %>
+            <%= image_tag("unknown.jpg", class:"flat_pic card-img-top") %>
+          <% end %>
+        </div>
+          <div class="flat-card-content">
+            <div class="flat-card-title">
+              <h4><%= flat.title %></h4>
+            </div>
+            <div>
+              <p><%= flat.category %></p>
+              <p><%= flat.location %></p>
+              <p>Check-In: <%= reservation.check_in %></p>
+              <p>Check-Out: <%= reservation.check_out %></p>
+            </div>
+            <div class="flex">
+              <div class="flex align-items-center">
+                <i class="fa-solid fa-users"></i>
+                <span><%= flat.number_of_guests %></span>
+              </div>
+              <div class="flex align-items-center ms-3">
+                <i class="fa-solid fa-euro-sign"></i>
+                <span><%= flat.price %></span>
+              </div>
             </div>
           </div>
+          <div class="flat-card-actions">
+            <%= link_to "Info", reservation_path(reservation), style:"width: 100%", class: "btn btn-outline-info" %>
+          </div>
         </div>
-      <% end %>
-    </div>
-    <div class="row">
-      <div class="container">
-        <% if Flat.create %>
-          <%= link_to "Back to All Flats!", flats_path, class:"btn btn-primary" %>
-        <% end %>
-        <%= link_to 'All your flats', flats_path, class: "btn btn-primary" %>
       </div>
-    </div>
+    <% end %>
+  </div>
   </div>
 </div>
