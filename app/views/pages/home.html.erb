@@ -3,8 +3,8 @@
     <h1>Bienvenido a  <strong>Airclone</strong> </h1>
     <p>Encontra el lugar ideal para alojarte sin pagar de mas</p>
     <%= link_to "Ver ofertas disponibles", flats_path, class:"btn btn-outline-light"%>
+    <% if user_signed_in? == false %>
     <%= link_to "Inicia cesion", new_user_session_path, class: "btn btn-outline-light" %>
-
+    <% end %>
   </div>
 </div>
-
