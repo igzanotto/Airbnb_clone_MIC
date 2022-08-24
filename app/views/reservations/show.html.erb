@@ -1,4 +1,5 @@
 <div>
+  
   <% flat = Flat.find(@reservation.flat_id) %>
   <% if flat.photo.key.present? %>
     <%= cl_image_tag flat.photo.key, crop: :fill, class:"flat_pic card-img-top", style:"height: 600px" %>
