@@ -8,6 +8,7 @@ class FlatsController < ApplicationController
     # else
     # @flats = Flat.all
     # end
+    @flats = policy_scope(Flat)
     if params[:query].present?
       sql_query = "title ILIKE :query OR category ILIKE :query"
       @flats = Flat.where(sql_query, query: "%#{params[:query]}%")
@@ -18,6 +19,7 @@ class FlatsController < ApplicationController
 
   def new
     @flat = Flat.new
+    authorize @flat
   end
 
   def create
@@ -28,6 +30,7 @@ class FlatsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+    authorize @flat
   end
 
 
@@ -38,12 +41,15 @@ class FlatsController < ApplicationController
         lng: @flat.geocode[1],
         info_window: render_to_string(partial: "info_window", locals: {flat: @flat})
       }]
+    authorize @flat
   end
 
   def edit
+    authorize @flat
   end
 
   def update
+    authorize @flat
     if @flat.update(flat_params)
       redirect_to flat_path(@flat)
     else
@@ -52,6 +58,7 @@ class FlatsController < ApplicationController
   end
 
   def destroy
+    authorize @flat
     @flat.destroy
     redirect_to flats_path, status: :see_other
   end

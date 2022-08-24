@@ -40,11 +40,14 @@
           </div>
           <div class="flat-card-actions">
             <%= link_to "More info", flat_path(flat), class: "btn btn-outline-success" %>
+            <% if policy(flat).edit? %>
             <%= link_to "Edit", edit_flat_path(flat), class: "btn btn-outline-secondary" %>
+            <% end %>
+            <% if policy(flat).destroy? %>
             <%= link_to "Remove", flat_path(flat),
                 data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                class: "btn btn-outline-danger"
-            %>
+                class: "btn btn-outline-danger" %>
+            <% end %>
           </div>
         </div>
       </div>
