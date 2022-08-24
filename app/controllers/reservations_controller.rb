@@ -19,24 +19,13 @@ class ReservationsController < ApplicationController
     @reservation.flat = @flat
     # @reservation.total_price = ((@reservation.check_out - @reservation.check_in).to_i) * @flat.price
     if @reservation.save
-      redirect_to flat_path(@flat)
+      redirect_to reservations_path(@flat)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit; end
-
-  # def update
-  #   @reservation = Reservation.find(params[:id])
-  #   @reservation.update(reservation_params)
-  #   @reservation.total_price = ((@reservation.check_out - @reservation.check_in).to_i) * @flat.price
-  #   if @reservation.save
-  #     redirect_to reservation_path(@flat, @reservation)
-  #   else
-  #     render :edit
-  #   end
-  # end
 
   def update
     new_id = @reservation.flat_id
