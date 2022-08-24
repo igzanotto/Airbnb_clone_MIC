@@ -16,17 +16,8 @@
     <div class="col-4">
       <div class="flat-show-card">
         <h5>Book this place!</h5>
-
         <form action="">
-          <div class="input-group">
-            <span class="input-group-text" id="start-date-label">From:</span>
-            <input type="text" class="form-control" placeholder="12/10/2017" aria-label="start-date" aria-describedby="start-date-label">
-          </div>
-          <div class="input-group mt-2">
-            <span class="input-group-text" id="end-date-label">To:</span>
-            <input type="text" class="form-control" placeholder="18/10/2017" aria-label="end-date" aria-describedby="start-date-label">
-          </div>
-          <input type="submit" value="Book" class="btn btn-success mt-2" style="width: 100%"<%= link_to "Book", new_flat_reservation_path(@flat) %>>
+          <%= link_to "Reserve this now", new_flat_reservation_path(@flat), class: "btn btn-success mt-2", style: "width: 100%" %>
         </form>
       </div>
       <div class="flat-show-card">
