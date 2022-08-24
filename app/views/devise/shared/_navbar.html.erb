@@ -19,7 +19,7 @@
           </li>
            <li class="nav-item dropdown">
               <% if user_signed_in? %>
-                <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/5/52/Tipos_de_azules.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/5/52/Tipos_de_azules.png", class: "avatar-bordered dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <p><%= current_user.email %></p>
                   <%= link_to "messages", "#", class: "dropdown-item" %>

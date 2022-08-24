@@ -1,6 +1,6 @@
 <%= simple_form_for(flat) do |f| %>
   <%= f.input :title, placeholder: "Choose a title"  %>
-  <%= f.input :category, placeholder: "House, Apartment, Island, Cabin, Yatch" %>
+  <%= f.input :category, collection: %w[House Apartment Island Cabin Yatch] %>
   <%= f.input :price, placeholder: "Choose a price per night" %>
   <%= f.input :description, placeholder: "What better describes your unique flat?" %>
   <%= f.input :location, placeholder: "Put an exact location", input_html: {data: {location_autocomplete_target: "location"}, class: "d-none"},
