@@ -3,7 +3,7 @@
   <%= f.input :category, placeholder: "House, Apartment, Island, Cabin, Yatch" %>
   <%= f.input :price, placeholder: "Choose a price per night" %>
   <%= f.input :description, placeholder: "What better describes your unique flat?" %>
-  <%= f.input :location, placeholder: "Put an exact location", input_html: {data: {location_autocomplete_target: "location"}},
+  <%= f.input :location, placeholder: "Put an exact location", input_html: {data: {location_autocomplete_target: "location"}, class: "d-none"},
   wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
   <%= f.input :number_of_guests, placeholder: "Max number of guests" %>
   <%= f.input :photo, as: :file %>
