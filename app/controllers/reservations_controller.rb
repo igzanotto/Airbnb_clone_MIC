@@ -8,6 +8,10 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.all
   end
 
+  def host_reservations
+    @host_reservations = Reservation.all
+  end
+
   def new
     @reservation = Reservation.new
     authorize @reservation

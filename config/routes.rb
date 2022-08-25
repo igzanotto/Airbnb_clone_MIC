@@ -8,5 +8,5 @@ Rails.application.routes.draw do
     resources :reservations, only: %i[new  create]
   end
   resources :reservations, only: %i[index new show edit update destroy]
-
+  get 'host_reservations', to: 'reservations#host_reservations', as: 'host_reservations'
 end

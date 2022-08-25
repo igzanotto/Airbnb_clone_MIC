@@ -1,10 +1,11 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1470770841072-f978cf4d019e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);">
   <div class="container">
-    <h1>Bienvenido a  <strong>Airclone</strong> </h1>
-    <p>Encontra el lugar ideal para alojarte sin pagar de mas</p>
-    <%= link_to "Ver ofertas disponibles", flats_path, class:"btn btn-outline-light"%>
+    <h1>Welcome to <strong>Airclone</strong> </h1>
+    <p>Find the ideal place to stay anywhere arround the globe</p>
+    <%= link_to "see all avilable offers", flats_path, class:"btn btn-outline-light"%>
     <% if user_signed_in? == false %>
-    <%= link_to "Inicia cesion", new_user_session_path, class: "btn btn-outline-light" %>
+    <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-light" %>
+    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light" %>
     <% end %>
   </div>
 </div>
