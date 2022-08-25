@@ -53,6 +53,7 @@ class FlatsController < ApplicationController
     authorize @flat
   end
 
+
   def edit
     authorize @flat
   end
@@ -70,6 +71,10 @@ class FlatsController < ApplicationController
     authorize @flat
     @flat.destroy
     redirect_to flats_path, status: :see_other
+  end
+
+  def this_flat_reservations
+    @reservations = Reservation.where("flat_id:#{params[:flat_id]}")
   end
 
   private
