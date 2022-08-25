@@ -17,7 +17,7 @@
       <div class="flat-show-card">
         <h5>Book this place!</h5>
         <form action="">
-          <%= link_to "Reserve this now", new_flat_reservation_path(@flat), class: "btn btn-success mt-2", style: "width: 100%" %>
+          <%= link_to "Reserve this now", new_flat_reservation_path(@flat), "data-bs-toggle" => "modal", "data-bs-target" => "#staticBackdrop", class: "btn btn-success mt-2", style: "width: 100%" %>
         </form>
       </div>
       <div class="flat-show-card">
@@ -48,4 +48,28 @@
   data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row justify-content-md-center">
+          <h1>New reservation</h1>
+          <%= simple_form_for [ @flat, @reservation ] do |f| %>
+            <%= f.input :check_in, as: :date, html5: true, label: 'Check-in' %>
+            <%= f.input :check_out, as: :date, html5: true, label: 'Check-out'  %>
+            <%= f.input :number_of_guests, label: 'Number of guests'  %>
+            <div class="text-center">
+              <%= f.submit "Confirm", class: "btn btn-outline-success" %>
+              <%= link_to "Back to All Flats", flats_path, class: "btn btn-outline-primary"  %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
