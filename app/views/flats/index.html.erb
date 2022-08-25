@@ -15,55 +15,60 @@
     </div>
   </div>
 
-  <div class="row">
-    <% @flats.each do |flat| %>
-      <div class="col-md-4">
-        <div class="flat-card">
-          <div class="flat-card-image" style="background-image: url('<%= cl_image_path flat.photo.key, height: 300, width: 400, crop: :fill %>')"></div>
-          <div class="flat-card-content">
-            <div class="flat-card-title">
-              <h4><%= flat.title %></h4>
-            </div>
-            <p><%= flat.category %></p>
-            <p><%= flat.location %></p>
-            <p><%= flat.description %></p>
-            <div class="flex">
-              <div class="flex align-items-center">
-                <i class="fa-solid fa-users"></i>
-                <span><%= flat.number_of_guests %></span>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <% @flats.each do |flat| %>
+        <div class="col-md-4">
+          <div class="flat-card">
+            <div class="flat-card-image" style="background-image: url('<%= cl_image_path flat.photo.key, height: 300, width: 400, crop: :fill, class: "flat_pic card-img-top" %>')"></div>
+              <div class="flat-card-content text-truncate mr-2">
+                <div class="flat-card-title">
+                  <h4><%= flat.title %></h4>
+                </div>
+                <p><%= flat.category %></p>
+                <p><%= flat.location %></p>
+                <p><%= flat.description %></p>
               </div>
-              <div class="flex align-items-center ms-3">
-                <i class="fa-solid fa-euro-sign"></i>
-                <span><%= flat.price %></span>
+              <div class="flat-card-items">
+                  <div class="flex align-items-center ms-5">
+                    <i class="fa-solid fa-users"></i>
+                    <span><%= flat.number_of_guests %></span>
+                  </div>
+                  <div class="flex align-items-center ms-5">
+                    <i class="fa-solid fa-euro-sign"></i>
+                    <span><%= flat.price %></span>
+                  </div>
               </div>
-            </div>
-          </div>
-          <div class="flat-card-actions">
-            <%= link_to "More info", flat_path(flat), class: "btn btn-outline-success" %>
-            <% if policy(flat).edit? %>
-            <%= link_to "Edit", edit_flat_path(flat), class: "btn btn-outline-secondary" %>
-            <% end %>
-            <% if policy(flat).destroy? %>
-            <%= link_to "Remove", flat_path(flat),
+              <div class="flat-card-actions">
+                <%= link_to "More info", flat_path(flat), class: "btn btn-outline-success" %>
+                <% if policy(flat).edit? %>
+                <%= link_to "Edit", edit_flat_path(flat), class: "btn btn-outline-secondary" %>
+                <% end %>
+                <% if policy(flat).destroy? %>
+                <%= link_to "Remove", flat_path(flat),
                 data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
                 class: "btn btn-outline-danger" %>
-            <% end %>
+                <% end %>
+                <% if policy(flat).destroy? %>
+                <%= link_to "Reservations of this flat", host_reservations_path, style:"width: 100%", class: "btn btn-outline-success width" %>
+                <% end %>
+              </div>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
-  <nav aria-label="Page navigation example">
+
+  <nav aria-label="Page navigation example" >
   <ul class="pagination justify-content-end">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
+    <li class="page-item"><a class="page-link" <%= link_to "Previous page", flats_path(page: @page - 1) %> </li>
+    <li class="page-item"><a class="page-link" <%= link_to "1", flats_path %> </li>
+    <li class="page-item"><a class="page-link" <%= link_to "2", flats_path(page: 1) %> </li>
+    <li class="page-item"><a class="page-link" <%= link_to "3", flats_path(page: 2) %> </li>
+    <li class="page-item"><a class="page-link" <%= link_to "Next page", flats_path(page: @page + 1) %> </li>
   </ul>
   </nav>
+
 </div>
