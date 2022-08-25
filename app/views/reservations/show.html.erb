@@ -31,10 +31,11 @@
         <div class="mb-2 flex mb-2">Total: <%= @reservation.total_price %> €</div>
         <div class="flat-card-actions ">
           <div class="mb-2 ">
-            <%= link_to "Edit", edit_reservation_path(@reservation), style:"width: 100%", class: "btn btn-outline-secondary" %>
+          <% if policy(@reservation).edit? %>
+            <%= link_to "Edit reserve", edit_reservation_path(@reservation), style:"width: 100%", class: "btn btn-outline-secondary" %>
           </div>
           <div class="mb-2 ">
-            <%= link_to "Cancel", reservation_path(@reservation), style:"width: 100%", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+            <%= link_to "Cancel reserve", reservation_path(@reservation), @restaurant, method: :delete if policy(@restaurant).destroy?, style:"width: 100%", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
           </div>
         </div>
       </div>
