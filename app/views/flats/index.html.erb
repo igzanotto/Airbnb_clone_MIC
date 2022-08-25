@@ -22,7 +22,7 @@
         <div class="col-md-4">
           <div class="flat-card">
             <div class="flat-card-image" style="background-image: url('<%= cl_image_path flat.photo.key, height: 300, width: 400, crop: :fill, class: "flat_pic card-img-top" %>')"></div>
-              <div class="flat-card-content">
+              <div class="flat-card-content text-truncate mr-2">
                 <div class="flat-card-title">
                   <h4><%= flat.title %></h4>
                 </div>
@@ -30,12 +30,12 @@
                 <p><%= flat.location %></p>
                 <p><%= flat.description %></p>
               </div>
-              <div class="flex">
-                  <div class="flex align-items-center">
+              <div class="flat-card-items">
+                  <div class="flex align-items-center ms-5">
                     <i class="fa-solid fa-users"></i>
                     <span><%= flat.number_of_guests %></span>
                   </div>
-                  <div class="flex align-items-center ms-3">
+                  <div class="flex align-items-center ms-5">
                     <i class="fa-solid fa-euro-sign"></i>
                     <span><%= flat.price %></span>
                   </div>
@@ -49,6 +49,9 @@
                 <%= link_to "Remove", flat_path(flat),
                 data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
                 class: "btn btn-outline-danger" %>
+                <% end %>
+                <% if policy(flat).destroy? %>
+                <%= link_to "Reservations of this flat", host_reservations_path, style:"width: 100%", class: "btn btn-outline-success width" %>
                 <% end %>
               </div>
             </div>
@@ -69,4 +72,3 @@
   </nav>
 
 </div>
-<%= console %>
