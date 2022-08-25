@@ -21,7 +21,9 @@
   align-items: center;
   justify-content: space-between;
 }
-
+.col-md-4 {
+  display: flex;
+}
 .flat-card {
   width: 100%;
   position: relative;
@@ -38,8 +40,15 @@
 }
 
 .flat-card-content {
-  padding: 24px;
+  padding: 15px;
   background-color: #F8F9FA;
+  height: 180px;
+}
+
+.flat-card-items{
+background-color: #F8F9FA;
+display: flex;
+margin: 5px;
 }
 
 .flat-card-actions {

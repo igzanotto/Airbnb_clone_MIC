@@ -51,6 +51,7 @@ gem "cloudinary"
 gem "autoprefixer-rails"
 gem "geocoder"
 gem "pundit"
+gem 'will_paginate-bootstrap'
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 group :development, :test do

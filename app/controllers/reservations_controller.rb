@@ -4,7 +4,8 @@ class ReservationsController < ApplicationController
   before_action :set_flat, only: %i[new create]
 
   def index
-    @reservations = policy_scope(reservation)
+    # @reservations = policy_scope(reservation)
+    @reservations = Reservation.all
   end
 
   def host_reservations
