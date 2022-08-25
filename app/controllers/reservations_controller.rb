@@ -4,20 +4,24 @@ class ReservationsController < ApplicationController
   before_action :set_flat, only: %i[new create]
 
   def index
-    @reservations = Reservation.where(user: current_user)
+    @reservations = policy_scope(reservation)
   end
 
   def new
     @reservation = Reservation.new
+    authorize @reservation
   end
 
-  def show; end
+  def show
+    authorize @reservation
+  end
 
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.user = @user
     @reservation.flat = @flat
     @reservation.total_price = ((@reservation.check_out - @reservation.check_in).to_i) * @flat.price
+    authorize @reservation
     if @reservation.save
       redirect_to reservations_path(@flat)
     else
@@ -25,12 +29,15 @@ class ReservationsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    authorize @reservation
+  end
 
   def update
     @reservation.update(reservation_params)
     @flat = @reservation.flat
     @reservation.total_price = ((@reservation.check_out - @reservation.check_in).to_i) * @flat.price
+    authorize @reservation
     if @reservation.save
       redirect_to reservation_path(@reservation)
     else
@@ -39,6 +46,7 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
+    authorize @reservation
     @reservation.destroy
     redirect_to reservations_path, status: :see_other
   end
