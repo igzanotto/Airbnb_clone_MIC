@@ -51,7 +51,7 @@
                 class: "btn btn-outline-danger" %>
                 <% end %>
                 <% if policy(flat).destroy? %>
-                <%= link_to "Reservations of this flat", host_reservations_path, style:"width: 100%", class: "btn btn-outline-success width" %>
+                <%= link_to "Reservations of this flat", this_flat_reservations_path(:flat_id), style:"width: 100%", class: "btn btn-outline-success width" %>
                 <% end %>
               </div>
             </div>
