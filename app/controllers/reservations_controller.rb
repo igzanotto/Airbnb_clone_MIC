@@ -7,6 +7,10 @@ class ReservationsController < ApplicationController
     @reservations = policy_scope(reservation)
   end
 
+  def host_reservations
+    @host_reservations = Reservation.all
+  end
+
   def new
     @reservation = Reservation.new
     authorize @reservation
