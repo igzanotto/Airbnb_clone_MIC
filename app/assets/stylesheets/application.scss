@@ -12,7 +12,15 @@
 @import "components/index";
 @import "pages/index";
 @import "components/navbar";
+@import "components/user";
+@import "pages/home";
 
+body > .container {
+  padding-top: 150px;
+}
+body .negative-container {
+  padding-top: 0;
+}
 .flex {
   display: flex;
 }
@@ -51,6 +59,12 @@
   padding: 10px;
   background-color: #ffffff;
   height: 200px;
+}
+
+.reservation-container {
+  height: 350px;
+  background-position: center;
+  background-size: cover;
 }
 
 .flat-card-items{

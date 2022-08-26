@@ -1,12 +1,12 @@
 <div>
   <% flat = Flat.find(@reservation.flat_id) %>
   <% if flat.photo.key.present? %>
-    <div class="map" style="background-image: url('<%= cl_image_path flat.photo.key, crop: :fill %>')"></div>
+    <div class="reservation-container" style="background-image: url('<%= cl_image_path flat.photo.key, crop: :fill %>')"></div>
   <% else %>
     <%= image_tag("unknown.jpg", class:"flat_pic card-img-top", style:"height: 50%" ) %>
   <% end %>
 </div>
-<div class="container margin-top-negative">
+<div class="container negative-container margin-top-negative">
   <div class="row">
     <div class="col-8">
       <div class="flat-show-card">
