@@ -10,4 +10,7 @@ class Flat < ApplicationRecord
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
 
+  def blank_stars
+    5 - ratings.to_i
+  end
 end

@@ -42,6 +42,21 @@
           </div>
         </div>
       </div>
+            <div class="flat-show-card">
+        <div class="flex-align">
+          <h6 class="no-mb">Rating</h6>
+          <div class="flex">
+            <% @flat.ratings.to_i.times do  %>
+              <%# <span class="glyphicon glyphicon-star"></span> %>
+              <i class="fas fa-star" style="color: orange"></i>
+            <% end %>
+            <% @flat.blank_stars.times do %>
+              <%# <span class="glyphicon glyphicon-star-empty"></span> %>
+              <i class="fas fa-star" style="color: gray"></i>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div style="width: 100%; height: 600px;"
