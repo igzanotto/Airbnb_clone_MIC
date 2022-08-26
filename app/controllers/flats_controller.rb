@@ -74,6 +74,10 @@ class FlatsController < ApplicationController
     @reservations = Reservation.where("flat_id:#{params[:flat_id]}")
   end
 
+  # def blank_stars
+  #   5 - ratings.to_i
+  # end
+
   private
 
   def set_flat
