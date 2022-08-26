@@ -50,9 +50,6 @@
                 data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
                 class: "btn btn-outline-danger" %>
                 <% end %>
-                <% if policy(flat).destroy? %>
-                <%= link_to "Reservations of this flat", this_flat_reservations_path(:flat_id), style:"width: 100%", class: "btn btn-outline-success width" %>
-                <% end %>
               </div>
             </div>
           </div>
