@@ -1,11 +1,17 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1470770841072-f978cf4d019e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);">
-  <div class="container">
-    <h1>Welcome to <strong>Airclone</strong> </h1>
-    <p>Find the ideal place to stay anywhere arround the globe</p>
-    <%= link_to "see all avilable offers", flats_path, class:"btn btn-outline-light"%>
+<div class="container-fluid vh-100 banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1470770841072-f978cf4d019e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);">
+  <div class="card-container flex-wrap container-fluid">
+  <div class="py-2">
+    <h1>Welcome to <strong><span style="color: #00A699;">Air</span><span style="color: #FF385C;">Clone</span></strong> </h1>
+  </div>
+  <div class="py-2">
+    <h3>Find the ideal place to stay anywhere arround the globe</h3>
+  </div>
+  <div class="py-2">
+    <%= link_to "see all avilable offers", flats_path, class:"btn btn-look btn-outline-light"%>
     <% if user_signed_in? == false %>
-    <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-light" %>
-    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light" %>
+    <%= link_to "Log in", new_user_session_path, class: "btn btn-look btn-outline-light" %>
+    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-look btn-outline-light" %>
     <% end %>
+  </div>
   </div>
 </div>

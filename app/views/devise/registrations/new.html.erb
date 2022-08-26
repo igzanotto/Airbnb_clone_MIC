@@ -1,24 +1,45 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h2>Sign up</h2>
-
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: false}) do |f| %>
+<section>
+  <div class="banner-sign" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1470770841072-f978cf4d019e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: false}) do |f| %>
         <%= f.error_notification %>
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
 
-        <div class="form-inputs">
-          <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }%>
-          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" } %>
-          <%= f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" } %>
+              <h3 class="mb-5">Sign UP</h3>
+
+              <div class="form-outline mb-4">
+                <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }%>
+              </div>
+
+              <div class="form-outline mb-4">
+                <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" } %>
+                <%= f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" } %>
+              </div>
+
+              <!-- Checkbox -->
+              <%# <div class="form-check d-flex justify-content-start mb-4">
+                <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+                <label class="form-check-label" for="form1Example3"> Remember password </label>
+              </div> %>
+
+              <%= f.button :submit, "Sign up",style:"width: 100%", class:"btn btn-primary btn-lg btn-block px-4" %>
+
+              <hr class="my-4">
+
+              <div class="d-grid gap-2">
+                <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39"
+                  type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
+                <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;"
+                  type="submit"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="form-actions">
-          <%= f.button :submit, "Sign up" %>
-        </div>
-      <% end %>
-
-      <%= render "devise/shared/links" %>
-
+      </div>
     </div>
+    <% end %>
   </div>
-</div>
+</section>
