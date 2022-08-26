@@ -12,8 +12,20 @@
       <div class="flat-show-card">
         <h1><%= flat.title %></h1>
         <p class="flat-show-address"><%= flat.location %></p>
+        <div class="flex mx-4 justify-content-around">
+          <div class="flex align-items-center flat-card-actions">
+            <div class="flex mx-4 px-2 align-items-center">
+              <i class="fa-solid fa-users mx-2"></i>
+              <span><%= flat.number_of_guests %></span>
+            </div>
+            <div class="flex mx-4 px-2 align-items-center ms-3">
+              <i class="fa-solid fa-euro-sign mx-2"></i>
+              <span><%= flat.price %></span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="flat-show-card">
+      <div class="flex-wrap flat-show-card">
         <h3>About this flat...</h3>
         <p><strong>Category:</strong>  <%= flat.category %></p>
         <p><strong>Description:</strong>  <%= flat.description %></p>
@@ -22,21 +34,26 @@
 
     <div class="col-4">
       <div class="flat-show-card">
-        <h3>Detail reservation</h3>
-        <div class="mb-2 flex">Check In: <%= @reservation.check_in %></div>
-        <div class="mb-2 flex">Check Out: <%= @reservation.check_out %></div>
-        <div class="mb-2 flex">Number guests: <%= @reservation.number_of_guests %></div>
-        <div class="mb-2 flex mb-2">Total: <%= @reservation.total_price %> €</div>
-        <div class="flat-card-actions ">
-          <div class="mb-1 ">
+        <h3>Details</h3>
+        <div class="mb-1 flex">Check In: <%= @reservation.check_in %></div>
+        <div class="mb-1 flex">Check Out: <%= @reservation.check_out %></div>
+        <div class="mb-1 flex">Number guests: <%= @reservation.number_of_guests %></div>
+        <div class="mb-1 flex">Total: <%= @reservation.total_price %> €</div>
+      </div>
+      <div class="flat-show-card">
+        <div class="flat-card">
+          <div class="mb-1 flex justify-content-center">
             <% if policy(@reservation).edit? %>
               <%= link_to "Edit", edit_reservation_path(@reservation), style:"width: 100%", class: "btn btn-outline-secondary" %>
             <% end %>
           </div>
-          <div class="mb-1 ">
+          <div class="mb-1 flex justify-content-center">
             <% if policy(@reservation).destroy? %>
               <%= link_to "Cancel", reservation_path(@reservation), method: :delete, style:"width: 100%", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
             <% end %>
+          </div>
+          <div class="mb-1 flex justify-content-center">
+            <%= link_to "Back", reservations_path(@reservation), style:"width: 100%", class: "btn btn-outline-info" %>
           </div>
         </div>
       </div>
