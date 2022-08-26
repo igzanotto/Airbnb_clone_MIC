@@ -1,9 +1,6 @@
 class FlatsController < ApplicationController
   before_action :set_flat, only: [:show, :edit, :update, :destroy]
   FLATS_PER_PAGE = 3
-  # def self.pagination_request(page)
-  #   paginate :per_page => 3, :page => page
-  # end
 
   def index
     # if params[:query].present?
@@ -17,11 +14,11 @@ class FlatsController < ApplicationController
     if params[:query].present?
       sql_query = "title ILIKE :query OR category ILIKE :query"
       @flats = Flat.where(sql_query, query: "%#{params[:query]}%")
+      @page =  params[:page].to_i
     else
-      @page = params[:page].to_i
+      # @flats = Flat.all
+      @page =  params[:page].to_i
       @flats = Flat.offset(@page * FLATS_PER_PAGE).limit(FLATS_PER_PAGE)
-      # #@flats = Flat.paginate(:page=>params[:page],per_page:3)
-      # @flats = Flat.pagination_request(params[:page])
     end
   end
 
@@ -76,6 +73,10 @@ class FlatsController < ApplicationController
   def this_flat_reservations
     @reservations = Reservation.where("flat_id:#{params[:flat_id]}")
   end
+
+  # def blank_stars
+  #   5 - ratings.to_i
+  # end
 
   private
 
