@@ -5,7 +5,7 @@ class ReservationsController < ApplicationController
 
   def index
     # @reservations = policy_scope(reservation)
-    @reservations = Reservation.all
+    @reservations = Reservation.where(user_id: current_user)
   end
 
   def host_reservations
