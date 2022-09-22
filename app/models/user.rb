@@ -6,6 +6,6 @@ class User < ApplicationRecord
   has_many :flats
   has_many :reservations
 
-  validates :name, uniqueness: { scope: :name, message: "username already taken" }
+  # validates :name, uniqueness: { scope: :name, message: "username already taken" }
   validates :email, uniqueness: { scope: :email, message: "email already has an account" }
 end
